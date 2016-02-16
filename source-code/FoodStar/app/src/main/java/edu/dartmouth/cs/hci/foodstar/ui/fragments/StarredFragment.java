@@ -7,8 +7,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import edu.dartmouth.cs.hci.foodstar.R;
+import edu.dartmouth.cs.hci.foodstar.model.Recipe;
+import edu.dartmouth.cs.hci.foodstar.ui.adapters.FoodAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,9 +34,11 @@ public class StarredFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private View mRootView = null; // root view of inflated fragment
+    private GridView mGvFoodList = null;
+    private FoodAdapter mAdapter = null;
     private OnFragmentInteractionListener mListener;
-
+    private List<Recipe> mListRecipe = new ArrayList<Recipe>();
     public StarredFragment() {
         // Required empty public constructor
     }
@@ -65,7 +74,16 @@ public class StarredFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_starred, container, false);
+        mRootView =  inflater.inflate(R.layout.fragment_starred, container, false);
+        addHardCodeData();
+        initViews();
+        return mRootView;
+    }
+
+    private void initViews(){
+        mGvFoodList = (GridView) mRootView.findViewById(R.id.gvFoodList);
+        mAdapter = new FoodAdapter(getActivity(),mListRecipe);
+        mGvFoodList.setAdapter(mAdapter);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -73,6 +91,15 @@ public class StarredFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    private void addHardCodeData(){
+        Random r = new Random();
+        for (int i = 0 ; i < 20 ; i++){
+            mListRecipe.add(new Recipe(mListRecipe.size(),"Recipe " + (i + 1),r.nextInt(100)));
+        }
+
+
     }
 
     @Override
@@ -91,6 +118,5 @@ public class StarredFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
 
 }
