@@ -5,8 +5,8 @@
     tools:context="edu.dartmouth.cs.hci.foodstar.ui.fragments.StarredFragment">
 
     <GridView
-        android:layout_width="match_parent"
         android:id="@+id/gvFoodList"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:numColumns="@integer/columns_home"

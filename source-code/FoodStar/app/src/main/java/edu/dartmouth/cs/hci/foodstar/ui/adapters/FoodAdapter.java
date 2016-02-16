@@ -10,6 +10,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Random;
 
 import edu.dartmouth.cs.hci.foodstar.R;
 import edu.dartmouth.cs.hci.foodstar.model.Recipe;
@@ -52,7 +53,30 @@ public class FoodAdapter extends BaseAdapter {
     private void updateView(RecipeViewHolder holder,int position){
         Recipe recipe = getItem(position);
         holder.txtRecipeName.setText(recipe.getRecipeName());
+        holder.imgFoodThumb.setImageResource(getRandomImage(position));
     }
+    private int getRandomImage(int position){
+        Random r = new Random();
+
+        int id = position%4;
+        int result = R.drawable.veggie_burger;
+        switch (id){
+            case 1:{
+                result = R.drawable.baked_lasanga;
+            }
+            break;
+            case 2:{
+                result = R.drawable.falafel_wrap;
+            }
+            break;
+            case 3:{
+                result = R.drawable.quinoa_salad;
+            }
+            break;
+        }
+        return result;
+    }
+
     private View getRowView(View convertView){
         if(convertView == null){
             convertView = LayoutInflater.from(mContext).inflate(R.layout.row_grid_recipe,null);

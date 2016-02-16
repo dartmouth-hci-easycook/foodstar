@@ -37,6 +37,14 @@ public class PlaceholderFragment extends Fragment {
                 result = StarredFragment.newInstance("","");
             }
             break;
+            case 2 : {
+                result = StarredFragment.newInstance("","");
+            }
+            break;
+            case 3 : {
+                result = StarredFragment.newInstance("","");
+            }
+            break;
             default:{
                 result = new PlaceholderFragment();
                 Bundle args = new Bundle();
