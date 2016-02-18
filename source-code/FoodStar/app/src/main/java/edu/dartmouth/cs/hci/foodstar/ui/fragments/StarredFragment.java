@@ -1,19 +1,23 @@
 package edu.dartmouth.cs.hci.foodstar.ui.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import edu.dartmouth.cs.hci.foodstar.R;
+import edu.dartmouth.cs.hci.foodstar.RecipeStepsActivity;
 import edu.dartmouth.cs.hci.foodstar.model.Recipe;
 import edu.dartmouth.cs.hci.foodstar.ui.adapters.FoodAdapter;
 
@@ -39,6 +43,7 @@ public class StarredFragment extends Fragment {
     private FoodAdapter mAdapter = null;
     private OnFragmentInteractionListener mListener;
     private List<Recipe> mListRecipe = new ArrayList<Recipe>();
+    private static Context mContext;
     public StarredFragment() {
         // Required empty public constructor
     }
@@ -75,6 +80,9 @@ public class StarredFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mRootView =  inflater.inflate(R.layout.fragment_starred, container, false);
+        //setting the context
+        mContext = getActivity();
+
         addHardCodeData();
         initViews();
         return mRootView;
@@ -84,9 +92,22 @@ public class StarredFragment extends Fragment {
         mGvFoodList = (GridView) mRootView.findViewById(R.id.gvFoodList);
         mAdapter = new FoodAdapter(getActivity(),mListRecipe);
         mGvFoodList.setAdapter(mAdapter);
-    }
 
-    // TODO: Rename method, update argument and hook method into UI event
+        //setting the listeners for the individual item clicks
+
+        mGvFoodList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent recipeStepsIntent = new Intent(mContext,RecipeStepsActivity.class);
+                mContext.startActivity(recipeStepsIntent);
+
+            }
+        });
+        }
+
+                // TODO: Rename method, update argument and hook method into UI event
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);

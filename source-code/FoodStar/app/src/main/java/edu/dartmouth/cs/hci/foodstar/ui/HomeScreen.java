@@ -62,6 +62,9 @@ public class HomeScreen extends AppCompatActivity implements OnFragmentInteracti
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        //setting the listeners for the individual item clicks
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
     }

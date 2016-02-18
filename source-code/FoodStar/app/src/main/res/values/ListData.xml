@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Recipe 1-->
+    <string-array name="recipeSteps">
+        <item>Bring water to a boil in large saucepan.</item>
+        <item>Add the quinoa, stir once, and return to boil.</item>
+        <item>Cook uncovered over medium heat for 12 minutes.</item>
+        <item>Strain and rinse well with cold water.</item>
+        <item>When dry, transfer quinoa to a large bowl.</item>
+        <item>Add the cucumbers, onion, tomato, parsley, mint, lemon juice, salt and pepper.</item>
+        <item>Toss well and serve chilled.</item>
+    </string-array>
+
+
+    <!-- Steps number -->
+    <string-array name="stepsNumber">
+        <item>Step 1</item>
+        <item>Step 2</item>
+        <item>Step 3</item>
+        <item>Step 4</item>
+        <item>Step 5</item>
+        <item>Step 6</item>
+        <item>Step 7</item>
+    </string-array>
+
+</resources>
