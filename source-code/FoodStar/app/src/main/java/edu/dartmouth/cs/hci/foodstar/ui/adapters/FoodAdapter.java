@@ -1,6 +1,7 @@
 package edu.dartmouth.cs.hci.foodstar.ui.adapters;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,11 +51,14 @@ public class FoodAdapter extends BaseAdapter {
         updateView(holder,position);
         return convertView;
     }
+
     private void updateView(RecipeViewHolder holder,int position){
         Recipe recipe = getItem(position);
         holder.txtRecipeName.setText(recipe.getRecipeName());
         holder.imgFoodThumb.setImageResource(getRandomImage(position));
+        holder.mRatingBar.getProgressDrawable().setColorFilter(this.mContext.getColor(R.color.green1 ), PorterDuff.Mode.SRC_ATOP);
     }
+
     private int getRandomImage(int position){
         Random r = new Random();
 
