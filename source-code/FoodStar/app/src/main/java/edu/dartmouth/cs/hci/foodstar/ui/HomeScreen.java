@@ -1,5 +1,6 @@
 package edu.dartmouth.cs.hci.foodstar.ui;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -21,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import edu.dartmouth.cs.hci.foodstar.R;
+import edu.dartmouth.cs.hci.foodstar.ui.activity.SearchActivity;
 import edu.dartmouth.cs.hci.foodstar.ui.adapters.SectionsPagerAdapter;
 import edu.dartmouth.cs.hci.foodstar.ui.fragments.OnFragmentInteractionListener;
 import edu.dartmouth.cs.hci.foodstar.ui.fragments.StarredFragment;
@@ -97,6 +99,9 @@ public class HomeScreen extends AppCompatActivity implements OnFragmentInteracti
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
 
+            result =  true;
+        }else if (id == R.id.action_browse) {
+            startActivity(new Intent(HomeScreen.this, SearchActivity.class));
             result =  true;
         }
 

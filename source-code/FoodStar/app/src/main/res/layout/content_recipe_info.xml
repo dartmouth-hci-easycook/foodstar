@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/appbar"
+    android:orientation="vertical"
+    android:weightSum="10"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="edu.dartmouth.cs.hci.foodstar.ui.activity.RecipeInfoActivity"
+    tools:showIn="@layout/activity_recipe_info">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4.5"
+        android:background="@android:color/darker_gray">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/veggie_burger"
+            android:scaleType="fitXY" />
+
+        <RatingBar
+            android:id="@+id/rbRating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:numStars="5"
+            android:rating="4"
+            android:stepSize="0.1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:padding="5dp"
+            android:text="Beginner"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@android:drawable/ic_menu_more" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5.5">
+
+        <RelativeLayout
+            android:id="@+id/rlTimeContainer"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content" android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/txtPrepTime"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:text="Total prep time = 120 min"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/txtPrepTimeDistribution"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:padding="5dp"
+                android:layout_below="@id/txtPrepTime"
+                android:layout_height="wrap_content"
+                android:text="Prep = 60 min | Cook = 60min"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+        <include
+            layout="@layout/content_nutrient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rlTimeContainer" />
+
+    </RelativeLayout>
+
+</LinearLayout>

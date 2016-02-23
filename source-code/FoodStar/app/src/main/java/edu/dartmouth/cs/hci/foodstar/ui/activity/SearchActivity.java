@@ -1,5 +1,6 @@
 package edu.dartmouth.cs.hci.foodstar.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -8,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import java.util.ArrayList;
@@ -38,6 +41,7 @@ public class SearchActivity extends AppCompatActivity {
         mGvSearchResults = (GridView) findViewById(R.id.gvSearchResults);
         mAdapter = new FoodAdapter(SearchActivity.this,mListRecipes);
         mGvSearchResults.setAdapter(mAdapter);
+        mGvSearchResults.setOnItemClickListener(onItemClickListener);
         addHardCodeData();
         mAdapter.notifyDataSetChanged();
     }
@@ -47,8 +51,6 @@ public class SearchActivity extends AppCompatActivity {
         for (int i = 0; i < 20; i++) {
             mListRecipes.add(new Recipe(mListRecipes.size(), "Recipe " + (i + 1), r.nextInt(100)));
         }
-
-
     }
 
     @Override
@@ -60,7 +62,12 @@ public class SearchActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
+    private AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(SearchActivity.this,RecipeInfoActivity.class));
+        }
+    };
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

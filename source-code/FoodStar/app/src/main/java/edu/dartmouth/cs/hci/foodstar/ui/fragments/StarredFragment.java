@@ -19,6 +19,7 @@ import java.util.Random;
 import edu.dartmouth.cs.hci.foodstar.R;
 import edu.dartmouth.cs.hci.foodstar.RecipeStepsActivity;
 import edu.dartmouth.cs.hci.foodstar.model.Recipe;
+import edu.dartmouth.cs.hci.foodstar.ui.activity.RecipeInfoActivity;
 import edu.dartmouth.cs.hci.foodstar.ui.adapters.FoodAdapter;
 
 /**
@@ -99,7 +100,7 @@ public class StarredFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent recipeStepsIntent = new Intent(mContext,RecipeStepsActivity.class);
+                Intent recipeStepsIntent = new Intent(mContext,RecipeInfoActivity.class);
                 mContext.startActivity(recipeStepsIntent);
 
             }
