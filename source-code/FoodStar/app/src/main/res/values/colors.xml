@@ -8,4 +8,10 @@
     <color name="green3">#2B8E00</color>
     <color name="green4">#70ED3B</color>
     <color name="green5">#92ED6B</color>
+
+    <color name="pink1">#EF002A</color>
+    <color name="pink2">#B32D45</color>
+    <color name="pink3">#9B001C</color>
+    <color name="pink4">#F73E5F</color>
+    <color name="pink5">#F76F87</color>
 </resources>
