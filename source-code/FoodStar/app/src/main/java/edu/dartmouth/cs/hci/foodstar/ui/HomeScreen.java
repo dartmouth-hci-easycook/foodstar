@@ -68,6 +68,7 @@ public class HomeScreen extends AppCompatActivity implements OnFragmentInteracti
         //setting the listeners for the individual item clicks
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.green4));
         tabLayout.setupWithViewPager(mViewPager);
     }
 
