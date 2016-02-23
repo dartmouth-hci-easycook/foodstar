@@ -56,25 +56,25 @@ public class FoodAdapter extends BaseAdapter {
         Recipe recipe = getItem(position);
         holder.txtRecipeName.setText(recipe.getRecipeName());
         holder.imgFoodThumb.setImageResource(getRandomImage(position));
-        holder.mRatingBar.getProgressDrawable().setColorFilter(this.mContext.getColor(R.color.green1 ), PorterDuff.Mode.SRC_ATOP);
+        holder.mRatingBar.getProgressDrawable().setColorFilter(this.mContext.getResources().getColor(R.color.green1), PorterDuff.Mode.SRC_ATOP);
     }
 
     private int getRandomImage(int position){
         Random r = new Random();
 
         int id = position%4;
-        int result = R.drawable.veggie_burger;
+        int result = R.drawable.recipe4;
         switch (id){
             case 1:{
-                result = R.drawable.baked_lasanga;
+                result = R.drawable.recipe1;
             }
             break;
             case 2:{
-                result = R.drawable.falafel_wrap;
+                result = R.drawable.recipe2;
             }
             break;
             case 3:{
-                result = R.drawable.quinoa_salad;
+                result = R.drawable.recipe3;
             }
             break;
         }
@@ -96,7 +96,6 @@ public class FoodAdapter extends BaseAdapter {
         RecipeViewHolder result = new RecipeViewHolder();
         result.txtRecipeName = (TextView)view.findViewById(R.id.txtRecipeName);
         result.imgFoodThumb = (ImageView)view.findViewById(R.id.imgFood);
-        result.imgDuration = (ImageView)view.findViewById(R.id.imgDuration);
         result.mRatingBar = (RatingBar)view.findViewById(R.id.rbRating);
         return  result;
     }
@@ -107,5 +106,4 @@ public class FoodAdapter extends BaseAdapter {
         private RatingBar mRatingBar;
         private ImageView imgDuration;
     }
-
 }

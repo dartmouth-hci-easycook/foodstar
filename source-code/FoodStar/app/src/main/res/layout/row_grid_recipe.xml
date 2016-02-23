@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="150dp"
-    android:layout_margin="5dp"
+    android:layout_margin="10dp"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -23,18 +23,15 @@
         android:layout_centerHorizontal="true"
         android:text="Taco"
         android:gravity="center"
-        android:padding="5dp"
-        android:textStyle="bold"
         android:textColor="@color/green3"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtRecipeName"
         android:gravity="center_vertical"
         android:layout_centerHorizontal="true"
-        android:padding="5dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -46,7 +43,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2h"
-            android:padding="5dp"/>
+            android:textColor="@color/green2"
+            />
 
         <RatingBar
             android:layout_width="wrap_content"
@@ -56,7 +54,7 @@
             android:stepSize="0.1"
             style="?android:attr/ratingBarStyleSmall"
             android:rating="4"
-
+            android:layout_marginLeft="5dp"
             />
     </LinearLayout>
 
