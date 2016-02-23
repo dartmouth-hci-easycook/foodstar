@@ -12,4 +12,17 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_recipe_steps">Recipe Steps</string>
+
+    <array name="recipes">
+        <item>Taco,15m,5,Hard</item>
+        <item>Pasta,25m,3,Easy</item>
+        <item>Pizza,1h,2,Easy</item>
+        <item>Pasta,15m,4,hard</item>
+        <item>Baked Chicken,2h,3,Medium</item>
+        <item>Tomato Soup,15m,2,Medium</item>
+        <item>Egg Chicken,35m,1,Hard</item>
+        <item>Sandwich,10m,5,Easy</item>
+        <item>Bagle,10m,4,Medium</item>
+        <item>Desert,50m,3,Hard</item>
+    </array>
 </resources>
