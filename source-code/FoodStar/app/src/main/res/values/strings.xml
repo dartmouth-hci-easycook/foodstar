@@ -13,16 +13,23 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_recipe_steps">Recipe Steps</string>
 
-    <array name="recipes">
-        <item>Taco,15m,5,Hard</item>
-        <item>Pasta,25m,3,Easy</item>
-        <item>Pizza,1h,2,Easy</item>
-        <item>Pasta,15m,4,hard</item>
-        <item>Baked Chicken,2h,3,Medium</item>
-        <item>Tomato Soup,15m,2,Medium</item>
-        <item>Egg Chicken,35m,1,Hard</item>
-        <item>Sandwich,10m,5,Easy</item>
-        <item>Bagle,10m,4,Medium</item>
-        <item>Desert,50m,3,Hard</item>
-    </array>
+
+    <string-array name="recipes">
+        <string>Taco,15m,5,Hard</string>
+        <string>Pasta,25m,3,Easy</string>
+        <string>Pizza,1h,2,Easy</string>
+        <string>Pasta,15m,4,hard</string>
+        <string>Baked Chicken,2h,3,Medium</string>
+        <string>Tomato Soup,15m,2,Medium</string>
+        <string>Egg Chicken,35m,1,Hard</string>
+        <string>Sandwich,10m,5,Easy</string>
+        <string>Bagle,10m,4,Medium</string>
+        <string>Desert,50m,3,Hard</string>
+    </string-array>
+
+    <string name="title_activity_search">Search recipes</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="start_typing_search">Type hear to search</string>
 </resources>
