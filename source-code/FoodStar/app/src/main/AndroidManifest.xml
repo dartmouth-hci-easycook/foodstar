@@ -28,9 +28,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RecipeStepsActivity"
+            android:name=".ui.activity.RecipeStepsActivity"
             android:label="@string/title_activity_recipe_steps"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.DetailedStepActivity"
+            android:label="@string/title_activity_detailed_step"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
     </application>
 

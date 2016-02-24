@@ -10,14 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import edu.dartmouth.cs.hci.foodstar.R;
-import edu.dartmouth.cs.hci.foodstar.RecipeStepsActivity;
 import edu.dartmouth.cs.hci.foodstar.model.Recipe;
 import edu.dartmouth.cs.hci.foodstar.ui.activity.RecipeInfoActivity;
 import edu.dartmouth.cs.hci.foodstar.ui.adapters.FoodAdapter;
