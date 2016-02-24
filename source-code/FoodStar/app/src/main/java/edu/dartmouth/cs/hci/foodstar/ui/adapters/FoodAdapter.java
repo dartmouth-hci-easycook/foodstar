@@ -56,7 +56,7 @@ public class FoodAdapter extends BaseAdapter {
         Recipe recipe = getItem(position);
         holder.txtRecipeName.setText(recipe.getRecipeName());
         holder.imgFoodThumb.setImageResource(getRandomImage(position));
-        holder.mRatingBar.getProgressDrawable().setColorFilter(this.mContext.getResources().getColor(R.color.green1), PorterDuff.Mode.SRC_ATOP);
+        holder.mRatingBar.getProgressDrawable().setColorFilter(this.mContext.getResources().getColor(R.color.green2), PorterDuff.Mode.SRC_ATOP);
     }
 
     private int getRandomImage(int position){

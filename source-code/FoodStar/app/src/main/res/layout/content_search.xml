@@ -10,17 +10,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="edu.dartmouth.cs.hci.foodstar.ui.activity.SearchActivity"
-    tools:showIn="@layout/app_bar_search">
+    tools:showIn="@layout/app_bar_search"
+    android:background="#FFF">
 
     <EditText
         android:id="@+id/edtSearch"
         style="@android:style/Widget.Material.SearchView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableRight="@android:drawable/ic_menu_search"
+        android:layout_height="40dp"
         android:hint="@string/start_typing_search"
         android:imeOptions="actionSearch"
-        android:inputType="text">
+        android:inputType="text"
+        android:textColor="@color/pink4"
+        android:textColorHint="@color/pink6"
+        android:textStyle="bold"
+        android:backgroundTint="@color/pink4"
+        >
 
         <requestFocus/>
     </EditText>
