@@ -84,7 +84,7 @@
                 android:layout_centerInParent="true"
                 android:paddingLeft="2dp"
                 android:paddingTop="2dp"
-                android:text="Calories 320"
+                android:text="320 cals"
                 android:textColor="@color/green2"
                 android:textSize="20dp" />
 
