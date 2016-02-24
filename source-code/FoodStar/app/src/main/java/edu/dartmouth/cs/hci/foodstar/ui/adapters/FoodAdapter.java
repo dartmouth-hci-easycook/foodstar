@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 import java.util.Random;
 
@@ -54,9 +56,11 @@ public class FoodAdapter extends BaseAdapter {
 
     private void updateView(RecipeViewHolder holder,int position){
         Recipe recipe = getItem(position);
+        holder.mRatingBar.setNumStars(recipe.getStars());
         holder.txtRecipeName.setText(recipe.getRecipeName());
-        holder.imgFoodThumb.setImageResource(getRandomImage(position));
+        holder.imgFoodThumb.setImageResource(recipe.getUriThumb());
         holder.mRatingBar.getProgressDrawable().setColorFilter(this.mContext.getResources().getColor(R.color.green2), PorterDuff.Mode.SRC_ATOP);
+        holder.duration.setText(Integer.toString(recipe.getDuration()) + "m");
     }
 
     private int getRandomImage(int position){
@@ -97,6 +101,7 @@ public class FoodAdapter extends BaseAdapter {
         result.txtRecipeName = (TextView)view.findViewById(R.id.txtRecipeName);
         result.imgFoodThumb = (ImageView)view.findViewById(R.id.imgFood);
         result.mRatingBar = (RatingBar)view.findViewById(R.id.rbRating);
+        result.duration = (TextView)view.findViewById(R.id.duration);
         return  result;
     }
 
@@ -105,5 +110,6 @@ public class FoodAdapter extends BaseAdapter {
         private ImageView imgFoodThumb;
         private RatingBar mRatingBar;
         private ImageView imgDuration;
+        private TextView duration;
     }
 }

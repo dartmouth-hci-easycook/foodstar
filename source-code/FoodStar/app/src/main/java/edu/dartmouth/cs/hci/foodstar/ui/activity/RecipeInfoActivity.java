@@ -3,6 +3,7 @@ package edu.dartmouth.cs.hci.foodstar.ui.activity;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.media.Image;
+import android.media.Rating;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -28,6 +29,7 @@ public class RecipeInfoActivity extends AppCompatActivity {
     private Recipe mRecipe = null;
     private TextView mTxtTime;
     private ImageView mImgRecipe;
+    private RatingBar mRbRatings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +37,17 @@ public class RecipeInfoActivity extends AppCompatActivity {
         mRecipe = (Recipe)getIntent().getSerializableExtra(EXTRA_RECIPE);
         Log.e("VVV","name = " + mRecipe.getRecipeName());
         Log.e("VVV","time = " + mRecipe.getDuration());
-        Log.e("VVV","image = " + mRecipe.getUriThumb());
+        Log.e("VVV", "image = " + mRecipe.getUriThumb());
+        Log.e("VVV", "rating = " + mRecipe.getStars());
 
         setContentView(R.layout.activity_recipe_info);
         mToolBar = (Toolbar) findViewById(R.id.toolbar);
         mTxtTime = (TextView)findViewById(R.id.txtTime);
+        mRbRatings = (RatingBar)findViewById(R.id.rbRating);
         mImgRecipe = (ImageView)findViewById(R.id.imgRecipe);
         mImgRecipe.setBackgroundResource(mRecipe.getUriThumb());
         mToolBar.setTitle(mRecipe.getRecipeName());
+        mRbRatings.setNumStars(mRecipe.getStars());
         setSupportActionBar(mToolBar);
         mTxtTime.setText(mRecipe.getDuration() + "min");
         RatingBar mRatingBar = (RatingBar) findViewById(R.id.rbRating);
