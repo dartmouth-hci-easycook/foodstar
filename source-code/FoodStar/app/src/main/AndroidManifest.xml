@@ -11,13 +11,12 @@
         <activity
             android:name=".ui.activity.RecipeInfoActivity"
             android:label="@string/title_activity_recipe_info"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".ui.activity.SearchActivity"
             android:label="@string/title_activity_search"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateVisible"></activity>
         <activity
             android:name=".ui.HomeScreen"
             android:label="@string/title_activity_home_screen"

@@ -3,6 +3,7 @@ package edu.dartmouth.cs.hci.foodstar.model;
 import android.content.Context;
 import android.net.Uri;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import edu.dartmouth.cs.hci.foodstar.R;
 /**
  * Created by Vishal Gaurav
  */
-public class Recipe {
+public class Recipe implements Serializable {
     private long id;
     private String recipeName;
     private int duration;
@@ -91,8 +92,8 @@ public class Recipe {
     public static List<Recipe> getFilteredRecipes(Context context, String filterText) {
         List<Recipe> resultAll = getHardCodedRecipes(context);
         List<Recipe> result = new ArrayList<>();
-        for(Recipe recipe : resultAll){
-            if(recipe.getRecipeName().toLowerCase().contains(filterText.toLowerCase())){
+        for (Recipe recipe : resultAll) {
+            if (recipe.getRecipeName().toLowerCase().contains(filterText.toLowerCase())) {
                 result.add(recipe);
             }
         }

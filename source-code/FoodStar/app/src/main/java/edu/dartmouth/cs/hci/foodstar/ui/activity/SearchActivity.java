@@ -1,5 +1,6 @@
 package edu.dartmouth.cs.hci.foodstar.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -11,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -50,12 +52,21 @@ public class SearchActivity extends AppCompatActivity {
         mEdtSearch.setOnEditorActionListener(mEditorActionListener);
         //addHardCodeData();
         mAdapter.notifyDataSetChanged();
+        mEdtSearch.setShowSoftInputOnFocus(true);
     }
 
     private void addHardCodeData() {
         Random r = new Random();
         for (int i = 0; i < 20; i++) {
             mListRecipes.add(new Recipe(mListRecipes.size(), "Recipe " + (i + 1), r.nextInt(100)));
+        }
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if(hasFocus){
+            mEdtSearch.requestFocus();
         }
     }
 
