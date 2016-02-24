@@ -1,6 +1,12 @@
 package edu.dartmouth.cs.hci.foodstar.model;
 
+import android.content.Context;
 import android.net.Uri;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.dartmouth.cs.hci.foodstar.R;
 
 /**
  * Created by Vishal Gaurav
@@ -56,5 +62,25 @@ public class Recipe {
 
     public void setUriLarge(Uri uriLarge) {
         this.uriLarge = uriLarge;
+    }
+
+    public static List<Recipe> getHardCodedRecipes(Context context) {
+        List<Recipe> result = new ArrayList<>();
+        String[] array = context.getResources().getStringArray(R.array.recipes);
+        for (int i = 0; i < array.length; i++) {
+            result.add(new Recipe(i, array[i], 20));
+        }
+        return result;
+    }
+
+    public static List<Recipe> getFilteredRecipes(Context context, String filterText) {
+        List<Recipe> resultAll = getHardCodedRecipes(context);
+        List<Recipe> result = new ArrayList<>();
+        for(Recipe recipe : resultAll){
+            if(recipe.getRecipeName().toLowerCase().contains(filterText.toLowerCase())){
+                result.add(recipe);
+            }
+        }
+        return result;
     }
 }
