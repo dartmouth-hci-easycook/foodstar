@@ -1,6 +1,7 @@
 package edu.dartmouth.cs.hci.foodstar.ui.activity;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RatingBar;
 
 import edu.dartmouth.cs.hci.foodstar.R;
 import edu.dartmouth.cs.hci.foodstar.RecipeStepsActivity;
@@ -24,7 +26,10 @@ public class RecipeInfoActivity extends AppCompatActivity {
         mToolBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolBar);
         mToolBar.setTitle("Recipe 1");
-        mToolBar.setNavigationIcon(android.R.drawable.ic_media_previous);
+        RatingBar mRatingBar = (RatingBar) findViewById(R.id.rbRating);
+        mRatingBar.getProgressDrawable().setColorFilter(this.getBaseContext().getResources().getColor(R.color.green2), PorterDuff.Mode.SRC_ATOP);
+
+//        mToolBar.setNavigationIcon(android.R.drawable.ic_media_previous);
     }
 
     @Override

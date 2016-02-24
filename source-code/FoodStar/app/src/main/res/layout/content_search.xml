@@ -22,7 +22,7 @@
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:textColor="@color/pink4"
-        android:textColorHint="@color/pink5"
+        android:textColorHint="@color/pink6"
         android:textStyle="bold"
         android:backgroundTint="@color/pink4"
         >
