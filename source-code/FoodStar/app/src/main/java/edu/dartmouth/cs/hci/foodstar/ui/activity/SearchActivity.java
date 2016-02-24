@@ -1,6 +1,5 @@
 package edu.dartmouth.cs.hci.foodstar.ui.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -12,7 +11,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -32,6 +30,7 @@ public class SearchActivity extends AppCompatActivity {
     private List<Recipe> mListRecipes = new ArrayList<>();
     private FoodAdapter mAdapter = null;
     private EditText mEdtSearch;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +44,10 @@ public class SearchActivity extends AppCompatActivity {
         toggle.syncState();
         mGvSearchResults = (GridView) findViewById(R.id.gvSearchResults);
         mGvSearchResults.setEmptyView(findViewById(R.id.txtEmptyView));
-        mAdapter = new FoodAdapter(SearchActivity.this,mListRecipes);
+        mAdapter = new FoodAdapter(SearchActivity.this, mListRecipes);
         mGvSearchResults.setAdapter(mAdapter);
         mGvSearchResults.setOnItemClickListener(onItemClickListener);
-        mEdtSearch = (EditText)findViewById(R.id.edtSearch);
+        mEdtSearch = (EditText) findViewById(R.id.edtSearch);
         mEdtSearch.setOnEditorActionListener(mEditorActionListener);
         //addHardCodeData();
         mAdapter.notifyDataSetChanged();
@@ -65,7 +64,7 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if(hasFocus){
+        if (hasFocus) {
             mEdtSearch.requestFocus();
         }
     }
@@ -79,36 +78,41 @@ public class SearchActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
     private AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(SearchActivity.this,RecipeInfoActivity.class));
+            Intent intent = new Intent(SearchActivity.this, RecipeInfoActivity.class);
+            intent.putExtra(RecipeInfoActivity.EXTRA_RECIPE, mAdapter.getItem(position));
+            startActivity(intent);
         }
     };
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-       // getMenuInflater().inflate(R.menu.search, menu);
+        // getMenuInflater().inflate(R.menu.search, menu);
         return false;
     }
+
     private TextView.OnEditorActionListener mEditorActionListener = new TextView.OnEditorActionListener() {
         @Override
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
             boolean result = false;
-            if(v.getId() == R.id.edtSearch){
+            if (v.getId() == R.id.edtSearch) {
                 startSearch();
             }
             return result;
         }
     };
 
-    public void startSearch(){
+    public void startSearch() {
         String searchText = mEdtSearch.getText().toString().trim().toLowerCase();
-        if(searchText!= null && !searchText.isEmpty()){
+        if (searchText != null && !searchText.isEmpty()) {
             mListRecipes.clear();
-            mListRecipes.addAll(Recipe.getFilteredRecipes(getBaseContext(),searchText));
+            mListRecipes.addAll(Recipe.getFilteredRecipes(getBaseContext(), searchText));
             mAdapter.notifyDataSetChanged();
-        }else{
+        } else {
             mEdtSearch.setError(getString(R.string.error_search_no_text));
         }
     }

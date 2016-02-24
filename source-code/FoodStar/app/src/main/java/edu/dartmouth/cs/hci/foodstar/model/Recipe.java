@@ -57,9 +57,9 @@ public class Recipe implements Serializable {
         this.duration = duration;
     }
 
-//    public Uri getUriThumb() {
-//        return uriThumb;
-//    }
+    public int getUriThumb() {
+        return uriThumb;
+    }
 
 //    public void setUriThumb(Uri uriThumb) {
 //        this.uriThumb = uriThumb;

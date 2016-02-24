@@ -101,6 +101,7 @@ public class StarredFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent recipeStepsIntent = new Intent(mContext,RecipeInfoActivity.class);
+                recipeStepsIntent.putExtra(RecipeInfoActivity.EXTRA_RECIPE, mAdapter.getItem(position));
                 mContext.startActivity(recipeStepsIntent);
 
             }
