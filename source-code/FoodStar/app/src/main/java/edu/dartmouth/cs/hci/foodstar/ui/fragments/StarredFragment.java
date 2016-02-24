@@ -107,7 +107,6 @@ public class StarredFragment extends Fragment {
         });
         }
 
-                // TODO: Rename method, update argument and hook method into UI event
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -117,11 +116,8 @@ public class StarredFragment extends Fragment {
 
     private void addHardCodeData(){
         Random r = new Random();
-        for (int i = 0 ; i < 20 ; i++){
-            mListRecipe.add(new Recipe(mListRecipe.size(),"Recipe " + (i + 1),r.nextInt(100)));
-        }
-
-
+        mListRecipe.clear();
+        mListRecipe.addAll(Recipe.getHardCodedRecipes(getActivity()));
     }
 
     @Override
