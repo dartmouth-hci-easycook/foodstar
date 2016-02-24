@@ -18,16 +18,16 @@
     <string name="error_search_no_text">Please input query</string>
 
     <string-array name="recipes">
-        <item>Taco,15m,5,Hard</item>
-        <item>Pasta,25m,3,Easy</item>
-        <item>Pizza,1h,2,Easy</item>
-        <item>Pasta,15m,4,hard</item>
-        <item>Baked Chicken,2h,3,Medium</item>
-        <item>Tomato Soup,15m,2,Medium</item>
-        <item>Egg Chicken,35m,1,Hard</item>
-        <item>Sandwich,10m,5,Easy</item>
-        <item>Bagle,10m,4,Medium</item>
-        <item>Desert,50m,3,Hard</item>
+        <item>Taco</item>
+        <item>Pasta</item>
+        <item>Pizza</item>
+        <item>Pasta</item>
+        <item>Baked Chicken</item>
+        <item>Tomato Soup</item>
+        <item>Egg Chicken</item>
+        <item>Sandwich</item>
+        <item>Bagle</item>
+        <item>Desert</item>
     </string-array>
 
     <string name="title_activity_search">Search</string>
