@@ -59,7 +59,6 @@ public class RecipeStepsActivity extends ListActivity {
                     detailedStepIntent.putExtra(DetailedStepActivity.INTENT_EXTRA , mRecipe.recipeSteps.get(position));
                     mContext.startActivity(detailedStepIntent);
                 }
-
             }
         });
     }

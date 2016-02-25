@@ -21,6 +21,7 @@ public class Recipe implements Serializable {
     public int fat = 0;
     public int protein = 0;
     public int carbs = 0;
+    public int calories = 20;
 
     public ArrayList<RecipeStep> recipeSteps;
 
