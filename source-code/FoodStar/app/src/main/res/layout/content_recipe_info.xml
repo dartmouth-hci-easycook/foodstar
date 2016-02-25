@@ -32,6 +32,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:padding="5dp"
+            android:textColor="@color/pink2"
             android:text="Beginner"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"
             android:textStyle="bold" />

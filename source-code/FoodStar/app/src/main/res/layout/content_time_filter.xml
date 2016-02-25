@@ -42,9 +42,9 @@
             android:layout_below="@+id/linearLayout"
             android:layout_centerHorizontal="true"
             android:ems="3"
+            android:maxLength="3"
             android:inputType="numberSigned"
             android:maxEms="3"
-
             android:singleLine="true"
             android:textColor="@android:color/white" />
 
@@ -80,6 +80,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout"
             android:layout_centerHorizontal="true"
+            android:maxLength="3"
+
             android:ems="3"
             android:inputType="numberSigned"
             android:maxEms="3"

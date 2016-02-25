@@ -1,19 +1,27 @@
 package edu.dartmouth.cs.hci.foodstar.ui.activity;
 
 import android.app.AlertDialog;
+
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -22,33 +30,81 @@ import edu.dartmouth.cs.hci.foodstar.model.Recipe;
 import edu.dartmouth.cs.hci.foodstar.model.RecipeStep;
 import edu.dartmouth.cs.hci.foodstar.ui.adapters.ListViewAdapter;
 
-public class RecipeStepsActivity extends ListActivity {
+public class RecipeStepsActivity extends AppCompatActivity {
+
+    private class RecipeAdapter extends BaseAdapter {
+        private final Context context;
+        private ArrayList<RecipeStep> recipeSteps;
+
+        public RecipeAdapter(Context context, ArrayList<RecipeStep> recipeSteps) {
+            this.context = context;
+            this.recipeSteps = recipeSteps;
+        }
+
+        @Override
+        public int getCount() {
+            return recipeSteps.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View rowView = inflater.inflate(R.layout.recipe_list_item, parent, false);
+            TextView topTextView = (TextView) rowView.findViewById(R.id.top_text);
+            TextView bottomTextView = (TextView) rowView.findViewById(R.id.bottom_text);
+            ImageView imageView = (ImageView) rowView.findViewById(R.id.more_details_image);
+
+            topTextView.setText("Step " + Integer.toString(position + 1));
+            bottomTextView.setText(recipeSteps.get(position).description);
+
+            if (recipeSteps.get(position).detailedDescription.isEmpty()) {
+                imageView.setVisibility(View.INVISIBLE);
+            }
+
+            if (recipeSteps.get(position).hasTimer) {
+                imageView.setVisibility(View.VISIBLE);
+                imageView.setImageResource(R.drawable.timer);
+            }
+            return rowView;
+        }
+    }
+
     public static final String INTENT_RECIPE = "INTENT_RECIPE";
 
-    private static ListView mListView = null;
+    private ListView mListView = null;
     private ListViewAdapter mListAdapter = null;
-    private static Context mContext;
+    private Context mContext;
     private Recipe mRecipe = null;
+    private Toolbar mToolbar;
     private Button mRateButton;
     private RatingBar ratingBar;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mRecipe = (Recipe) getIntent().getSerializableExtra(INTENT_RECIPE);
         setContentView(R.layout.activity_recipe_steps);
-        mListView = (ListView)findViewById(android.R.id.list);
 
-        // Rating button
-        mRateButton = (Button) findViewById(R.id.btn_rate_me);
-        mRateButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                ShowDialog();
-            }
-        });
+        mListView = (ListView)findViewById(android.R.id.list);
 
         //setting the context
         mContext = this;
-        mRecipe = (Recipe)getIntent().getSerializableExtra(INTENT_RECIPE);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitle(mRecipe.getRecipeName());
+        mToolbar.setNavigationIcon(R.drawable.back);
+        setSupportActionBar(mToolbar);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         initViews();
     }
@@ -59,7 +115,7 @@ public class RecipeStepsActivity extends ListActivity {
 //        String[] recipeSteps = generateRecipeStepNumbers();
 //        String[] stepsNumber = generateRecipeSteps();
 //        Integer imageID = R.drawable.arrow;
-        ListViewAdapter adapter = new ListViewAdapter(this, mRecipe.recipeSteps);
+        RecipeAdapter adapter = new RecipeAdapter(this, mRecipe.recipeSteps);
         mListView.setAdapter(adapter);
 
         //setting listview listener
@@ -80,20 +136,32 @@ public class RecipeStepsActivity extends ListActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_home_screen, menu);
+
+        getMenuInflater().inflate(R.menu.menu_recipe_steps, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void ShowDialog()
-    {
-        AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
-        RatingBar rating = new RatingBar(this);
-        rating.setMax(5);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                onBackPressed();
+            }
+            break;
+            case R.id.action_rate: {
+                ShowDialog();
+            }
+            break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-        popDialog.setIcon(android.R.drawable.btn_star_big_on);
-        popDialog.setTitle("Vote!! ");
-        popDialog.setView(rating);
+    public void ShowDialog() {
+        AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.dialog_rating,null);
+//        RatingBar rating = (RatingBar)findViewById(R.id.rating);
+        popDialog.setTitle("Rate - " + mRecipe.getRecipeName());
+        popDialog.setView(view);
 
         // Button OK
         popDialog.setPositiveButton(android.R.string.ok,

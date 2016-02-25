@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="edu.dartmouth.cs.hci.foodstar.ui.activity.RecipeInfoActivity">
+    <item
+        android:id="@+id/action_rate"
+        android:icon="@null"
+        android:orderInCategory="100"
+        android:title="@string/action_rate"
+        app:showAsAction="always|withText" />
+</menu>
