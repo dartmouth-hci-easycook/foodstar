@@ -7,7 +7,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -81,7 +85,7 @@ public class RecipeStepsActivity extends AppCompatActivity {
     }
 
     public static final String INTENT_RECIPE = "INTENT_RECIPE";
-
+    public static final int WHAT_NEXT_TICK = 1;
     private ListView mListView = null;
     private ListViewAdapter mListAdapter = null;
     private Context mContext;
@@ -89,6 +93,33 @@ public class RecipeStepsActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private Button mRateButton;
     private RatingBar ratingBar;
+    private AlertDialog mAlarmDialog;
+    private TextView mTxtTimeLeft;
+    private ImageView mImgAlarm;
+
+    private Handler mAlarmHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case WHAT_NEXT_TICK:{
+                    int timeLeft = msg.arg1;
+                    mTxtTimeLeft.setText((timeLeft< 10)?"0:0"+timeLeft + " secs left":"0:"+timeLeft + " secs left");
+                    if(timeLeft > 0 ){
+                        msg = Message.obtain();
+                        msg.what = WHAT_NEXT_TICK;
+                        msg.arg1 = --timeLeft;
+                        mAlarmHandler.sendMessageDelayed(msg,1000);
+                    }else{
+                        mAlarmHandler.removeMessages(WHAT_NEXT_TICK);
+                        mAlarmDialog.dismiss();
+                        vibrate(getBaseContext());
+                    }
+                }
+                break;
+            }
+            super.handleMessage(msg);
+        }
+    };
 
     @Override
 
@@ -123,12 +154,16 @@ public class RecipeStepsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 RecipeStep recipeStep = mRecipe.recipeSteps.get(position);
-                if (recipeStep.detailedDescription.isEmpty()) {
-                    return;
+                if (recipeStep.hasTimer) {
+                    showAlarmDialog(position, 10); // for demo purpose
                 } else {
-                    Intent detailedStepIntent = new Intent(mContext, DetailedStepActivity.class);
-                    detailedStepIntent.putExtra(DetailedStepActivity.INTENT_EXTRA, mRecipe.recipeSteps.get(position));
-                    mContext.startActivity(detailedStepIntent);
+                    if (recipeStep.detailedDescription.isEmpty()) {
+                        return;
+                    } else {
+                        Intent detailedStepIntent = new Intent(mContext, DetailedStepActivity.class);
+                        detailedStepIntent.putExtra(DetailedStepActivity.INTENT_EXTRA, mRecipe.recipeSteps.get(position));
+                        mContext.startActivity(detailedStepIntent);
+                    }
                 }
             }
         });
@@ -156,6 +191,31 @@ public class RecipeStepsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void showAlarmDialog(final int position, int seconds){
+        AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.dialog_alarm,null);
+        mTxtTimeLeft = (TextView)view.findViewById(R.id.txtTimeLeft);
+        mImgAlarm = (ImageView)view.findViewById(R.id.imgAlarm);
+        mTxtTimeLeft.setText((seconds < 10) ? "0:0" + seconds + " secs left" : "0:" + seconds + " secs left");
+        popDialog.setTitle("Step " + (position + 1) + " in Progress ! ");
+        popDialog.setView(view);
+        Message msg = mAlarmHandler.obtainMessage();
+        msg.what = WHAT_NEXT_TICK;
+        msg.arg1 = --seconds;
+        mAlarmHandler.sendMessageDelayed(msg,1000);
+        popDialog.setCancelable(false);
+        // Button OK
+        popDialog.setPositiveButton(android.R.string.cancel,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        mAlarmDialog.dismiss();
+                        mAlarmHandler.removeMessages(WHAT_NEXT_TICK);
+                    }
+                });
+
+        mAlarmDialog = popDialog.show();
+    }
+
     public void ShowDialog() {
         AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
         View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.dialog_rating,null);
@@ -180,5 +240,9 @@ public class RecipeStepsActivity extends AppCompatActivity {
 
         popDialog.create();
         popDialog.show();
+    }
+    private void vibrate(Context context){
+        Vibrator vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(1000);
     }
 }
