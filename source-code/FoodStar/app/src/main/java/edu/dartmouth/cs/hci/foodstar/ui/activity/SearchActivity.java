@@ -226,6 +226,8 @@ public class SearchActivity extends AppCompatActivity {
             mListRecipes.addAll(Recipe.getFilteredRecipes(getBaseContext(), filter));
             mAdapter.notifyDataSetChanged();
         } else {
+            mListRecipes.clear();
+            mAdapter.notifyDataSetChanged();
             mEdtSearch.setError(getString(R.string.error_search_no_text));
         }
     }
