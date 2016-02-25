@@ -4,11 +4,13 @@
     <string name="action_settings">Settings</string>
     <string name="action_browse">Search</string>
     <string name="action_start">Start</string>
+    <string name="action_filter">Show Filters</string>
     <string name="section_format">Under development: %1$d</string>
     <string name="title_activity_home_screen">@string/app_name</string>
     <string name="tab_label_starred">Starred</string>
     <string name="tab_label_recommendation">Recommended</string>
     <string name="tab_label_trending">Trending</string>
+    <string name="search_filter">Search Filters</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

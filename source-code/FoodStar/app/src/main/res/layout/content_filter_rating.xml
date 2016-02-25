@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/txtSearchFilter"
+    android:orientation="vertical"
+    tools:showIn="@layout/content_filter">
+
+    <TextView
+        android:id="@+id/txtRatingHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lighter_gray"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Rating Filters"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:textStyle="bold|italic" />
+
+    <LinearLayout
+        android:id="@+id/lnrRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="Minimum"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textColor="@android:color/white" />
+
+        <EditText
+            android:id="@+id/edtRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayout"
+            android:layout_centerHorizontal="true"
+            android:ems="3"
+            android:inputType="numberSigned"
+            android:maxEms="1"
+
+            android:singleLine="true"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="stars"
+
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+
+</LinearLayout>
