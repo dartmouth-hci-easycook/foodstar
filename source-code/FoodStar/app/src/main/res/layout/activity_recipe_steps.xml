@@ -37,5 +37,13 @@
         android:layout_height="wrap_content" >
     </ListView>
 
+    <Button
+        android:id="@+id/btn_rate_me"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onChangeClicked"
+        android:text="@string/rate_btn"
+        android:layout_weight="0"/>
+
 </LinearLayout>
 
