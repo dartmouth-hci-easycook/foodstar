@@ -12,9 +12,9 @@
         android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/app_bar"
             android:theme="@style/AppTheme.AppBarOverlay">
 
             <android.support.v7.widget.Toolbar
@@ -27,11 +27,11 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_below="@id/app_bar"
+            android:orientation="vertical"
             tools:context=".ui.activity.RecipeStepsActivity">
 
             <ListView
@@ -39,7 +39,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></ListView>
 
-        </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
+
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,21 +1,24 @@
 package edu.dartmouth.cs.hci.foodstar.ui.activity;
 
-import android.app.ListActivity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -74,19 +77,24 @@ public class RecipeStepsActivity extends AppCompatActivity {
 
     private ListView mListView = null;
     private ListViewAdapter mListAdapter = null;
-    private  Context mContext;
+    private Context mContext;
     private Recipe mRecipe = null;
     private Toolbar mToolbar;
+    private Button mRateButton;
+    private RatingBar ratingBar;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mRecipe = (Recipe)getIntent().getSerializableExtra(INTENT_RECIPE);
+        mRecipe = (Recipe) getIntent().getSerializableExtra(INTENT_RECIPE);
         setContentView(R.layout.activity_recipe_steps);
-        mListView = (ListView)findViewById(android.R.id.list);
+        mListView = (ListView) findViewById(android.R.id.list);
+
+
         //setting the context
         mContext = this;
-        mToolbar = (Toolbar)findViewById(R.id.toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle(mRecipe.getRecipeName());
         mToolbar.setNavigationIcon(R.drawable.back);
         setSupportActionBar(mToolbar);
@@ -122,17 +130,50 @@ public class RecipeStepsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_recipe_steps, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
-            case android.R.id.home:{
+        switch (item.getItemId()) {
+            case android.R.id.home: {
                 onBackPressed();
+            }
+            break;
+            case R.id.action_rate: {
+                ShowDialog();
             }
             break;
         }
         return super.onOptionsItemSelected(item);
     }
 
+
+    public void ShowDialog() {
+        AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.dialog_rating,null);
+        RatingBar rating = (RatingBar)findViewById(R.id.rating);
+        popDialog.setTitle("Rate - " + mRecipe.getRecipeName());
+        popDialog.setView(view);
+
+        // Button OK
+        popDialog.setPositiveButton(android.R.string.ok,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                // Button Cancel
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+        popDialog.create();
+        popDialog.show();
+    }
 }
