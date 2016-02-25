@@ -12,23 +12,31 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import edu.dartmouth.cs.hci.foodstar.R;
+import edu.dartmouth.cs.hci.foodstar.model.RecipeStep;
 
 /**
  * Created by nisha on 2/16/16.
  */
-public class ListViewAdapter extends ArrayAdapter<String> {
+public class ListViewAdapter extends ArrayAdapter<RecipeStep> {
 
     private final Context context;
-    private final String[] values;
-    private final String[] values1;
-    private final Integer imageID;
+    private ArrayList<RecipeStep> recipeSteps;
+//    private final String[] values;
+//    private final String[] values1;
+//    private final Integer imageID;
+//
+//    public ListViewAdapter(Context context, String[] values, String[] values1, Integer imageID) {
+//        super(context, R.layout.recipe_list_item, values);
+//        this.context = context;
+//        this.values = values;
+//        this.values1 = values1;
+//        this.imageID = imageID;
+//    }
 
-    public ListViewAdapter(Context context, String[] values, String[] values1, Integer imageID) {
-        super(context, R.layout.recipe_list_item, values);
+    public ListViewAdapter(Context context , ArrayList<RecipeStep> recipeSteps) {
+        super(context , R.layout.recipe_list_item , recipeSteps);
         this.context = context;
-        this.values = values;
-        this.values1 = values1;
-        this.imageID = imageID;
+        this.recipeSteps = recipeSteps;
     }
 
     @Override
@@ -40,9 +48,15 @@ public class ListViewAdapter extends ArrayAdapter<String> {
         TextView bottomTextView = (TextView) rowView.findViewById(R.id.bottom_text);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.more_details_image);
 
-        topTextView.setText(values[position]);
-        bottomTextView.setText(values1[position]);
-        imageView.setImageResource(imageID);
+        topTextView.setText("Step " + Integer.toString(position+1));
+        bottomTextView.setText(recipeSteps.get(position).description);
+
+        if (recipeSteps.get(position).detailedDescription.isEmpty()) {
+            imageView.setVisibility(View.INVISIBLE);
+        }
+//        topTextView.setText(values[position]);
+//        bottomTextView.setText(values1[position]);
+//        imageView.setImageResource(imageID);
 
         return rowView;
     }

@@ -24,6 +24,9 @@ public class RecipeInfoActivity extends AppCompatActivity {
     private TextView mTxtTime;
     private ImageView mImgRecipe;
     private RatingBar mRbRatings;
+    private TextView mProteinText;
+    private TextView mCarbsText;
+    private TextView mFatText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +42,17 @@ public class RecipeInfoActivity extends AppCompatActivity {
         mTxtTime = (TextView)findViewById(R.id.txtTime);
         mRbRatings = (RatingBar)findViewById(R.id.rbRating);
         mImgRecipe = (ImageView)findViewById(R.id.imgRecipe);
+        mProteinText = (TextView) findViewById(R.id.txtProtein);
+        mCarbsText = (TextView) findViewById(R.id.txtCarbs);
+        mFatText = (TextView) findViewById(R.id.txtFat);
+
         mImgRecipe.setBackgroundResource(mRecipe.getUriThumb());
         mToolBar.setTitle(mRecipe.getRecipeName());
         mRbRatings.setNumStars(mRecipe.getStars());
+        mProteinText.setText(Integer.toString(mRecipe.protein) + "G");
+        mFatText.setText(Integer.toString(mRecipe.fat) + "G");
+        mCarbsText.setText(Integer.toString(mRecipe.carbs) + "G");
+
         setSupportActionBar(mToolBar);
         mTxtTime.setText(mRecipe.getDuration() + "min");
         RatingBar mRatingBar = (RatingBar) findViewById(R.id.rbRating);
@@ -58,7 +69,9 @@ public class RecipeInfoActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case R.id.action_start:{
-                startActivity(new Intent(RecipeInfoActivity.this, RecipeStepsActivity.class));
+                Intent recipeStepsIntent = new Intent(RecipeInfoActivity.this , RecipeStepsActivity.class);
+                recipeStepsIntent.putExtra(RecipeStepsActivity.INTENT_RECIPE , mRecipe);
+                this.startActivity(recipeStepsIntent);
             }
             break;
         }
