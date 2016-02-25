@@ -194,11 +194,11 @@ public class Recipe implements Serializable {
         return result;
     }
 
-    public static List<Recipe> getFilteredRecipes(Context context, String filterText) {
+    public static List<Recipe> getFilteredRecipes(Context context, Filter filter) {
         List<Recipe> resultAll = getHardCodedRecipes(context);
         List<Recipe> result = new ArrayList<>();
         for (Recipe recipe : resultAll) {
-            if (recipe.getRecipeName().toLowerCase().contains(filterText.toLowerCase())) {
+            if (Filter.isFilterPassed(recipe,filter)) {
                 result.add(recipe);
             }
         }

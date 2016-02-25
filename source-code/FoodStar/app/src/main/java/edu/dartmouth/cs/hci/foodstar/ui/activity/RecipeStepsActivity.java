@@ -125,7 +125,6 @@ public class RecipeStepsActivity extends AppCompatActivity {
     };
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mRecipe = (Recipe) getIntent().getSerializableExtra(INTENT_RECIPE);
