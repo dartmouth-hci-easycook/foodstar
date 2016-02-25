@@ -21,6 +21,7 @@ public class Recipe implements Serializable {
     public int fat = 0;
     public int protein = 0;
     public int carbs = 0;
+    public int calories = 20;
 
     public ArrayList<RecipeStep> recipeSteps;
 
@@ -110,7 +111,7 @@ public class Recipe implements Serializable {
 
         ArrayList<RecipeStep> recipeSteps = new ArrayList<RecipeStep>();
         recipeSteps.add(new RecipeStep("Sample Description", "Sample Detailed Description", R.drawable.recipe1));
-        recipeSteps.add(new RecipeStep("Sample Description 2", "", 0));
+        recipeSteps.add(new RecipeStep("Sample Description 2", "", 0 , true , 20));
 
         Recipe recipe = new Recipe(0, array[0], 15, R.drawable.recipe1, 1);
         recipe.setCarbs(10);

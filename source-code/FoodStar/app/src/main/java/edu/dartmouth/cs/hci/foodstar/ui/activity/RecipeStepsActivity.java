@@ -1,6 +1,8 @@
 package edu.dartmouth.cs.hci.foodstar.ui.activity;
 
 import android.app.AlertDialog;
+
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,11 +18,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -71,6 +73,11 @@ public class RecipeStepsActivity extends AppCompatActivity {
             if (recipeSteps.get(position).detailedDescription.isEmpty()) {
                 imageView.setVisibility(View.INVISIBLE);
             }
+
+            if (recipeSteps.get(position).hasTimer) {
+                imageView.setVisibility(View.VISIBLE);
+                imageView.setImageResource(R.drawable.timer);
+            }
             return rowView;
         }
     }
@@ -114,8 +121,8 @@ public class RecipeStepsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mRecipe = (Recipe) getIntent().getSerializableExtra(INTENT_RECIPE);
         setContentView(R.layout.activity_recipe_steps);
-        mListView = (ListView) findViewById(android.R.id.list);
 
+        mListView = (ListView)findViewById(android.R.id.list);
 
         //setting the context
         mContext = this;
@@ -151,7 +158,6 @@ public class RecipeStepsActivity extends AppCompatActivity {
                     detailedStepIntent.putExtra(DetailedStepActivity.INTENT_EXTRA, mRecipe.recipeSteps.get(position));
                     mContext.startActivity(detailedStepIntent);
                 }
-
             }
         });
     }
@@ -203,7 +209,7 @@ public class RecipeStepsActivity extends AppCompatActivity {
     public void ShowDialog() {
         AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
         View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.dialog_rating,null);
-        RatingBar rating = (RatingBar)findViewById(R.id.rating);
+//        RatingBar rating = (RatingBar)findViewById(R.id.rating);
         popDialog.setTitle("Rate - " + mRecipe.getRecipeName());
         popDialog.setView(view);
 
