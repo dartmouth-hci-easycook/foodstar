@@ -72,6 +72,9 @@ public class RecipeStepsActivity extends AppCompatActivity {
             topTextView.setText("Step " + Integer.toString(position + 1));
             bottomTextView.setText(recipeSteps.get(position).description);
 
+            TextView minutesView = (TextView) rowView.findViewById(R.id.minutes);
+            minutesView.setText(recipeSteps.get(position).minutues);
+
             if (recipeSteps.get(position).detailedDescription.isEmpty()) {
                 imageView.setVisibility(View.INVISIBLE);
             }

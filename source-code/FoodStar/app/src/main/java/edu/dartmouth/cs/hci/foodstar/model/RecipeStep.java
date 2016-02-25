@@ -11,6 +11,7 @@ public class RecipeStep implements Serializable {
     public int uriLarge;
     public int timerMinutes;
     public boolean hasTimer = false;
+    public String minutues = "2 mins";
 
     RecipeStep(String description , String detailedDescription , int uriLarge) {
         this.description = description;
@@ -19,11 +20,12 @@ public class RecipeStep implements Serializable {
         this.hasTimer = false;
     }
 
-    RecipeStep(String description , String detailedDescription , int uriLarge , boolean hasTimer , int timerMinutes) {
+    RecipeStep(String description , String detailedDescription , int uriLarge , boolean hasTimer , int timerMinutes , String minutues) {
         this.description = description;
         this.detailedDescription = detailedDescription;
         this.uriLarge = uriLarge;
         this.hasTimer = hasTimer;
         timerMinutes =  timerMinutes;
+        this.minutues = minutues;
     }
 }

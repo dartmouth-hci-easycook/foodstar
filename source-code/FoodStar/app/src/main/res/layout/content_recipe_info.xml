@@ -187,15 +187,6 @@
                     android:text="High Prep Time"
                     android:textColor="#fff" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="2dp"
-                    android:background="@color/green3"
-                    android:padding="3dp"
-                    android:text="Soy Sauce"
-                    android:textColor="#fff" />
-
             </LinearLayout>
 
         </RelativeLayout>

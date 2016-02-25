@@ -48,8 +48,11 @@ public class ListViewAdapter extends ArrayAdapter<RecipeStep> {
         TextView bottomTextView = (TextView) rowView.findViewById(R.id.bottom_text);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.more_details_image);
 
+        TextView minutesView = (TextView) rowView.findViewById(R.id.minutes);
+
         topTextView.setText("Step " + Integer.toString(position+1));
         bottomTextView.setText(recipeSteps.get(position).description);
+        minutesView.setText(recipeSteps.get(position).minutues);
 
         if (recipeSteps.get(position).detailedDescription.isEmpty()) {
             imageView.setVisibility(View.INVISIBLE);

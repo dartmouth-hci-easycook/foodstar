@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginRight="30dp">
+        android:layout_marginRight="30dp"
+        >
 
         <TextView
             android:id="@+id/top_text"
@@ -27,7 +28,8 @@
             android:id="@+id/bottom_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:maxWidth="300dp"
+            android:text="TextViewasasfasfasfasasfsaffsafasasf"
             android:layout_marginLeft="10dp"
             android:padding="2dp"
             android:textColor="@color/green3"
@@ -35,13 +37,33 @@
             />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/more_details_image"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/side_arrow"
-        android:layout_centerVertical="true"/>
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:paddingRight="10dp"
+        android:gravity="right"
+        android:layout_centerVertical="true"
+        >
+        <TextView
+            android:id="@+id/minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20 mins"
+            android:textColor="@color/green3"
+            />
+
+        <ImageView
+            android:id="@+id/more_details_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/side_arrow"
+
+            />
+    </LinearLayout>
+
+
 
 </RelativeLayout>

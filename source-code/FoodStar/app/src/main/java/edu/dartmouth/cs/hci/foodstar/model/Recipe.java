@@ -110,8 +110,17 @@ public class Recipe implements Serializable {
         String[] array = context.getResources().getStringArray(R.array.recipes);
 
         ArrayList<RecipeStep> recipeSteps = new ArrayList<RecipeStep>();
-        recipeSteps.add(new RecipeStep("Sample Description", "Sample Detailed Description", R.drawable.recipe1));
-        recipeSteps.add(new RecipeStep("Sample Description 2", "", 0 , true , 20));
+        recipeSteps.add(new RecipeStep("Stir together the chipotle chile powder, garlic powder, salt, and cracked black pepper in a shallow bowl." , "" , 0 , false , 0 , "5 mins"));
+        recipeSteps.add(new RecipeStep("Brush the tilapia fillets with the canola oil, and press into the spice mixture to coat, and set aside." , "" , 0 , false , 0 , "15 mins"));
+        recipeSteps.add(new RecipeStep("Make the salsa." , "Make salsa by stirring together the mango, jalapeno, red onion, 1 clove garlic, cilantro, and lime juice in a separate bowl, and set aside." , R.drawable.recipe1 , false , 0 ,"1 min"));
+        recipeSteps.add(new RecipeStep("Bring the black beans and 2 cloves of garlic to a simmer in a saucepan with a pinch of salt." , "" , 0 , false , 0 , "15 mins"));
+        recipeSteps.add(new RecipeStep("Cover, and cook over low heat for 20 minutes." , "" , 0 , true , 20 , "20 mins"));
+        recipeSteps.add(new RecipeStep("Cook the tilapia." , "Meanwhile, heat a large skillet over medium-high heat, and cook the tilapia until opaque in the center, and crispy on both sides, about 7 minutes." , R.drawable.recipe1 , false , 0 , "15 mins"));
+        recipeSteps.add(new RecipeStep("Heat the tortillas in a skillet over medium heat, and keep warm." , "" , 0 , false , 0 , "2 mins"));
+        recipeSteps.add(new RecipeStep("To serve, place the tortillas on a plate, spoon on some Spanish rice and black beans." , "To serve, place the tortillas on a plate, spoon on some Spanish rice and black beans." , R.drawable.recipe1 , false , 0 , "7 mins"));
+        recipeSteps.add(new RecipeStep("Top with some of the coleslaw mix, hot tilapia, and a spoonful of the mango-cilantro salsa." , "" , 0 , false , 0 , "10 mins"));
+        recipeSteps.add(new RecipeStep("Serve hot topped with fresh cilantro." , "" , 0 , false , 0 , "13 mins"));
+
 
         Recipe recipe = new Recipe(0, array[0], 15, R.drawable.recipe1, 1);
         recipe.setCarbs(10);
