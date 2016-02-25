@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Random;
 
 import edu.dartmouth.cs.hci.foodstar.R;
+import edu.dartmouth.cs.hci.foodstar.model.Filter;
 import edu.dartmouth.cs.hci.foodstar.model.Recipe;
 import edu.dartmouth.cs.hci.foodstar.ui.adapters.FoodAdapter;
 
@@ -147,6 +148,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void onClickFilterApply() {
         mDrawer.closeDrawer(Gravity.LEFT);
+        startSearch();
     }
 
     private void onClickFilterClear() {
@@ -159,9 +161,51 @@ public class SearchActivity extends AppCompatActivity {
         mEdtFatMin.setText("");
         mEdtCarbMin.setText("");
         mEdtCarbMax.setText("");
-
     }
 
+    private Filter getFilter() {
+        Filter filter = new Filter();
+        String minCarb = mEdtCarbMin.getText().toString().trim().toLowerCase();
+        String maxCarb = mEdtCarbMax.getText().toString().trim().toLowerCase();
+        String minFat = mEdtFatMin.getText().toString().trim().toLowerCase();
+        String maxFat = mEdtFatMax.getText().toString().trim().toLowerCase();
+        String minProtein = mEdtProteinMin.getText().toString().trim().toLowerCase();
+        String maxProtein = mEdtProteinMax.getText().toString().trim().toLowerCase();
+        String minTime = mEdtTimeMin.getText().toString().trim().toLowerCase();
+        String maxTime = mEdtTimeMax.getText().toString().trim().toLowerCase();
+        String minRating = mEdtRating.getText().toString().trim().toLowerCase();
+
+        if (minRating != null && !minRating.isEmpty()) {
+            filter.minRating = Integer.parseInt(minRating);
+        }
+        if (minTime != null && !minTime.isEmpty()) {
+            filter.minTime = Integer.parseInt(minTime);
+        }
+        if (maxTime != null && !maxTime.isEmpty()) {
+            filter.maxTime = Integer.parseInt(maxTime);
+        }
+        if (minProtein != null && !minProtein.isEmpty()) {
+            filter.minProtein = Integer.parseInt(minProtein);
+        }
+        if (maxProtein != null && !maxProtein.isEmpty()) {
+            filter.maxProtein = Integer.parseInt(maxProtein);
+        }
+        if (minCarb != null && !minCarb.isEmpty()) {
+            filter.minCarb = Integer.parseInt(minCarb);
+        }
+        if (maxCarb != null && !maxCarb.isEmpty()) {
+            filter.maxCarb = Integer.parseInt(maxCarb);
+        }
+
+        if (minFat != null && !minFat.isEmpty()) {
+            filter.minFat = Integer.parseInt(minFat);
+        }
+        if (maxFat != null && !maxFat.isEmpty()) {
+            filter.maxFat = Integer.parseInt(maxFat);
+        }
+
+        return filter;
+    }
     private TextView.OnEditorActionListener mEditorActionListener = new TextView.OnEditorActionListener() {
         @Override
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -176,8 +220,10 @@ public class SearchActivity extends AppCompatActivity {
     public void startSearch() {
         String searchText = mEdtSearch.getText().toString().trim().toLowerCase();
         if (searchText != null && !searchText.isEmpty()) {
+            Filter filter = getFilter();
+            filter.filterText = searchText;
             mListRecipes.clear();
-            mListRecipes.addAll(Recipe.getFilteredRecipes(getBaseContext(), searchText));
+            mListRecipes.addAll(Recipe.getFilteredRecipes(getBaseContext(), filter));
             mAdapter.notifyDataSetChanged();
         } else {
             mEdtSearch.setError(getString(R.string.error_search_no_text));
