@@ -2,20 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/rounded_container_border">
+    android:background="@color/green2">
 
     <TextView
         android:id="@+id/txtSearchFilter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:gravity="center"
         android:padding="10dp"
         android:text="@string/search_filter"
         android:textAppearance="@android:style/TextAppearance.Large"
         android:textColor="@android:color/white"
-        android:textStyle="bold" />
+        />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -51,7 +50,10 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:padding="5dp"
-            android:text="Apply" />
+            android:text="Apply"
+            android:background="@color/green3"
+            android:textColor="#fff"
+            />
 
         <Button
             android:id="@+id/btnClear"
@@ -60,7 +62,9 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:padding="5dp"
-            android:text="Clear" />
+            android:text="Clear"
+            android:background="@color/green3"
+            android:textColor="#fff"/>
 
     </LinearLayout>
 
