@@ -54,6 +54,11 @@ public class ListViewAdapter extends ArrayAdapter<RecipeStep> {
         if (recipeSteps.get(position).detailedDescription.isEmpty()) {
             imageView.setVisibility(View.INVISIBLE);
         }
+
+        if (recipeSteps.get(position).hasTimer) {
+            imageView.setVisibility(View.VISIBLE);
+            imageView.setImageResource(R.drawable.timer);
+        }
 //        topTextView.setText(values[position]);
 //        bottomTextView.setText(values1[position]);
 //        imageView.setImageResource(imageID);
