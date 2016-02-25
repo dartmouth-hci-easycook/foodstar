@@ -16,9 +16,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="4.5"
-            android:background="@android:color/darker_gray">
+            >
 
             <ImageView
+                android:id="@+id/detail_step_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/boiled_quinoa"
@@ -29,12 +30,15 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.5"
-        android:background="@android:color/darker_gray">
+        >
 
         <TextView
+            android:id="@+id/detail_step_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Let the water come to rolling boil before adding quinoa. This prevents them from sticking"
+            android:textColor="@color/green2"
+            android:padding="10dp"
              />
 
     </RelativeLayout>

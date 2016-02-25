@@ -109,7 +109,8 @@ public class Recipe implements Serializable {
         String[] array = context.getResources().getStringArray(R.array.recipes);
 
         ArrayList<RecipeStep> recipeSteps = new ArrayList<RecipeStep>();
-        recipeSteps.add(new RecipeStep("Sample Description", "Sample Detailed Description", 1));
+        recipeSteps.add(new RecipeStep("Sample Description", "Sample Detailed Description", R.drawable.recipe1));
+        recipeSteps.add(new RecipeStep("Sample Description 2", "", 0));
 
         Recipe recipe = new Recipe(0, array[0], 15, R.drawable.recipe1, 1);
         recipe.setCarbs(10);

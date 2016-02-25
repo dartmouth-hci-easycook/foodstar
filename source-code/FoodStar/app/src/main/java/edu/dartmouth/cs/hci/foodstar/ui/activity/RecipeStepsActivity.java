@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import edu.dartmouth.cs.hci.foodstar.R;
 import edu.dartmouth.cs.hci.foodstar.model.Recipe;
+import edu.dartmouth.cs.hci.foodstar.model.RecipeStep;
 import edu.dartmouth.cs.hci.foodstar.ui.adapters.ListViewAdapter;
 
 public class RecipeStepsActivity extends ListActivity {
@@ -50,29 +51,16 @@ public class RecipeStepsActivity extends ListActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent detailedStepIntent = new Intent(mContext, DetailedStepActivity.class);
-                mContext.startActivity(detailedStepIntent);
+                RecipeStep recipeStep = mRecipe.recipeSteps.get(position);
+                if (recipeStep.detailedDescription.isEmpty()) {
+                    return;
+                } else {
+                    Intent detailedStepIntent = new Intent(mContext, DetailedStepActivity.class);
+                    mContext.startActivity(detailedStepIntent);
+                }
+
             }
         });
-    }
-
-    private String[] generateRecipeStepNumbers() {
-        int length = mRecipe.recipeSteps.size();
-        String[] recipeSteps = new String[length];
-        for (int i=0; i<length; i++) {
-            recipeSteps[i] = "Step " + Integer.toString(i+1);
-            System.out.println(recipeSteps[i]);
-        }
-        return recipeSteps;
-    }
-
-    private String[] generateRecipeSteps() {
-        int length = mRecipe.recipeSteps.size();
-        String[] recipeSteps = new String[length];
-        for (int i=0; i<length; i++) {
-            recipeSteps[i] = mRecipe.recipeSteps.get(i).description;
-        }
-        return recipeSteps;
     }
 
     @Override

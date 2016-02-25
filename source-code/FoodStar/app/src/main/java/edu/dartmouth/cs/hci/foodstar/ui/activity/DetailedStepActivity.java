@@ -8,6 +8,7 @@ import edu.dartmouth.cs.hci.foodstar.R;
 
 public class DetailedStepActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
