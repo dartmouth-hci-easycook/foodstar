@@ -34,15 +34,15 @@ public class PlaceholderFragment extends Fragment {
         Fragment result = null;
         switch (sectionNumber){
             case 1 : {
-                result = StarredFragment.newInstance("","");
+                result = StarredFragment.newInstance("3","");
             }
             break;
             case 2 : {
-                result = StarredFragment.newInstance("","");
+                result = StarredFragment.newInstance("4","");
             }
             break;
             case 3 : {
-                result = StarredFragment.newInstance("","");
+                result = StarredFragment.newInstance("4","");
             }
             break;
             default:{

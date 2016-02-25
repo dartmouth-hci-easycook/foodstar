@@ -12,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -116,7 +118,16 @@ public class StarredFragment extends Fragment {
     private void addHardCodeData(){
         Random r = new Random();
         mListRecipe.clear();
-        mListRecipe.addAll(Recipe.getHardCodedRecipes(getActivity()));
+
+        int maxRecipes = Integer.parseInt(mParam1);
+        ArrayList<Recipe> recipes = new ArrayList<Recipe>();
+        recipes.addAll(Recipe.getHardCodedRecipes(getActivity()));
+        Collections.shuffle(recipes);
+
+        for (int i=0; i<maxRecipes ; i++) {
+            mListRecipe.add(recipes.get(i));
+        }
+
     }
 
     @Override
