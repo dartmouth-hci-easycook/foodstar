@@ -56,6 +56,7 @@ public class RecipeStepsActivity extends ListActivity {
                     return;
                 } else {
                     Intent detailedStepIntent = new Intent(mContext, DetailedStepActivity.class);
+                    detailedStepIntent.putExtra(DetailedStepActivity.INTENT_EXTRA , mRecipe.recipeSteps.get(position));
                     mContext.startActivity(detailedStepIntent);
                 }
 
