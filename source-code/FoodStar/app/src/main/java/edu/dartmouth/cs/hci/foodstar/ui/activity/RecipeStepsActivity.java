@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -74,7 +76,7 @@ public class RecipeStepsActivity extends AppCompatActivity {
     }
 
     public static final String INTENT_RECIPE = "INTENT_RECIPE";
-
+    public static final int WHAT_NEXT_TICK = 1;
     private ListView mListView = null;
     private ListViewAdapter mListAdapter = null;
     private Context mContext;
@@ -82,6 +84,29 @@ public class RecipeStepsActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private Button mRateButton;
     private RatingBar ratingBar;
+    private AlertDialog mAlarmDialog;
+    private TextView mTxtTimeLeft;
+
+    private Handler mAlarmHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case WHAT_NEXT_TICK:{
+                    int timeLeft = msg.arg1;
+                    mTxtTimeLeft.setText((timeLeft< 10)?"0:0"+timeLeft + " Secs left":"0:"+timeLeft + " Secs left");
+                    if(timeLeft > 0 ){
+                        msg.arg1 = --timeLeft;
+                        mAlarmHandler.sendMessageDelayed(msg,1000);
+                    }else{
+                        mAlarmHandler.removeMessages(WHAT_NEXT_TICK);
+                        mAlarmDialog.dismiss();
+                    }
+                }
+                break;
+            }
+            super.handleMessage(msg);
+        }
+    };
 
     @Override
 
@@ -118,7 +143,10 @@ public class RecipeStepsActivity extends AppCompatActivity {
                 RecipeStep recipeStep = mRecipe.recipeSteps.get(position);
                 if (recipeStep.detailedDescription.isEmpty()) {
                     return;
-                } else {
+                } else if(recipeStep.){
+
+                }
+                else{
                     Intent detailedStepIntent = new Intent(mContext, DetailedStepActivity.class);
                     detailedStepIntent.putExtra(DetailedStepActivity.INTENT_EXTRA, mRecipe.recipeSteps.get(position));
                     mContext.startActivity(detailedStepIntent);
@@ -150,6 +178,27 @@ public class RecipeStepsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void showAlarmDialog(int seconds){
+        AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.dialog_alarm,null);
+        mTxtTimeLeft = (TextView)view.findViewById(R.id.txtTimeLeft);
+        mTxtTimeLeft.setText((seconds< 10)?"0:0"+seconds + " Secs left":"0:"+seconds + " Secs left");
+        Message msg = mAlarmHandler.obtainMessage();
+        msg.what = WHAT_NEXT_TICK;
+        msg.arg1 = --seconds;
+        mAlarmHandler.sendMessageDelayed(msg,1000);
+        popDialog.setCancelable(false);
+        // Button OK
+        popDialog.setPositiveButton(android.R.string.cancel,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        mAlarmDialog.dismiss();
+                        mAlarmHandler.removeMessages(WHAT_NEXT_TICK);
+                    }
+                });
+
+        mAlarmDialog = popDialog.show();
+    }
 
     public void ShowDialog() {
         AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
