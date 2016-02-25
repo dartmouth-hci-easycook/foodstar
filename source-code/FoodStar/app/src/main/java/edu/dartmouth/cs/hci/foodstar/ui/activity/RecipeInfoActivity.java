@@ -48,6 +48,7 @@ public class RecipeInfoActivity extends AppCompatActivity {
 
         mImgRecipe.setBackgroundResource(mRecipe.getUriThumb());
         mToolBar.setTitle(mRecipe.getRecipeName());
+        mToolBar.setNavigationIcon(R.drawable.back);
         mRbRatings.setNumStars(mRecipe.getStars());
         mProteinText.setText(Integer.toString(mRecipe.protein) + "G");
         mFatText.setText(Integer.toString(mRecipe.fat) + "G");
@@ -72,6 +73,10 @@ public class RecipeInfoActivity extends AppCompatActivity {
                 Intent recipeStepsIntent = new Intent(RecipeInfoActivity.this , RecipeStepsActivity.class);
                 recipeStepsIntent.putExtra(RecipeStepsActivity.INTENT_RECIPE , mRecipe);
                 this.startActivity(recipeStepsIntent);
+            }
+            break;
+            case android.R.id.home:{
+                onBackPressed();
             }
             break;
         }

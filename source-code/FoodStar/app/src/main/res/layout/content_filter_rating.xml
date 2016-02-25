@@ -42,7 +42,6 @@
             android:ems="3"
             android:inputType="numberSigned"
             android:maxEms="1"
-
             android:singleLine="true"
             android:textColor="@android:color/white" />
 

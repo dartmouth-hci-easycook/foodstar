@@ -4,12 +4,19 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -18,22 +25,71 @@ import edu.dartmouth.cs.hci.foodstar.model.Recipe;
 import edu.dartmouth.cs.hci.foodstar.model.RecipeStep;
 import edu.dartmouth.cs.hci.foodstar.ui.adapters.ListViewAdapter;
 
-public class RecipeStepsActivity extends ListActivity {
+public class RecipeStepsActivity extends AppCompatActivity {
+
+    private class RecipeAdapter extends BaseAdapter {
+        private final Context context;
+        private ArrayList<RecipeStep> recipeSteps;
+
+        public RecipeAdapter(Context context, ArrayList<RecipeStep> recipeSteps) {
+            this.context = context;
+            this.recipeSteps = recipeSteps;
+        }
+
+        @Override
+        public int getCount() {
+            return recipeSteps.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View rowView = inflater.inflate(R.layout.recipe_list_item, parent, false);
+            TextView topTextView = (TextView) rowView.findViewById(R.id.top_text);
+            TextView bottomTextView = (TextView) rowView.findViewById(R.id.bottom_text);
+            ImageView imageView = (ImageView) rowView.findViewById(R.id.more_details_image);
+
+            topTextView.setText("Step " + Integer.toString(position + 1));
+            bottomTextView.setText(recipeSteps.get(position).description);
+
+            if (recipeSteps.get(position).detailedDescription.isEmpty()) {
+                imageView.setVisibility(View.INVISIBLE);
+            }
+            return rowView;
+        }
+    }
+
     public static final String INTENT_RECIPE = "INTENT_RECIPE";
 
-    private static ListView mListView = null;
+    private ListView mListView = null;
     private ListViewAdapter mListAdapter = null;
-    private static Context mContext;
+    private  Context mContext;
     private Recipe mRecipe = null;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mRecipe = (Recipe)getIntent().getSerializableExtra(INTENT_RECIPE);
         setContentView(R.layout.activity_recipe_steps);
         mListView = (ListView)findViewById(android.R.id.list);
         //setting the context
         mContext = this;
-        mRecipe = (Recipe)getIntent().getSerializableExtra(INTENT_RECIPE);
+        mToolbar = (Toolbar)findViewById(R.id.toolbar);
+        mToolbar.setTitle(mRecipe.getRecipeName());
+        mToolbar.setNavigationIcon(R.drawable.back);
+        setSupportActionBar(mToolbar);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         initViews();
     }
@@ -44,7 +100,7 @@ public class RecipeStepsActivity extends ListActivity {
 //        String[] recipeSteps = generateRecipeStepNumbers();
 //        String[] stepsNumber = generateRecipeSteps();
 //        Integer imageID = R.drawable.arrow;
-        ListViewAdapter adapter = new ListViewAdapter(this, mRecipe.recipeSteps);
+        RecipeAdapter adapter = new RecipeAdapter(this, mRecipe.recipeSteps);
         mListView.setAdapter(adapter);
 
         //setting listview listener
@@ -56,7 +112,7 @@ public class RecipeStepsActivity extends ListActivity {
                     return;
                 } else {
                     Intent detailedStepIntent = new Intent(mContext, DetailedStepActivity.class);
-                    detailedStepIntent.putExtra(DetailedStepActivity.INTENT_EXTRA , mRecipe.recipeSteps.get(position));
+                    detailedStepIntent.putExtra(DetailedStepActivity.INTENT_EXTRA, mRecipe.recipeSteps.get(position));
                     mContext.startActivity(detailedStepIntent);
                 }
 
@@ -66,8 +122,17 @@ public class RecipeStepsActivity extends ListActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_home_screen, menu);
         return super.onCreateOptionsMenu(menu);
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case android.R.id.home:{
+                onBackPressed();
+            }
+            break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
