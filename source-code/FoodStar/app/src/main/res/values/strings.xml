@@ -36,4 +36,5 @@
     <string name="start_typing_search">Type here to search</string>
     <string name="title_activity_recipe_info">Recipe Info</string>
     <string name="title_activity_detailed_step">Detailed Step</string>
+    <string name="rate_btn">RATE THE APP!</string>
 </resources>
