@@ -1,13 +1,18 @@
 package edu.dartmouth.cs.hci.foodstar.ui.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -59,7 +64,17 @@ public class RecipeInfoActivity extends AppCompatActivity {
         RatingBar mRatingBar = (RatingBar) findViewById(R.id.rbRating);
         mRatingBar.getProgressDrawable().setColorFilter(this.getBaseContext().getResources().getColor(R.color.green2), PorterDuff.Mode.SRC_ATOP);
     }
+    public void onClickNutrient(View view){
+        //showNutrientDialog();
+    }
+    public void showNutrientDialog(){
+        AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.activity_nutrient_details,null);
+        popDialog.setView(view);
+        popDialog.setCancelable(true);
 
+       popDialog.show();
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_recipe_info, menu);

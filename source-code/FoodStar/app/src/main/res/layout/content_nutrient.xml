@@ -6,6 +6,7 @@
     android:background="#fff"
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
+    android:onClick="onClickNutrient"
     tools:showIn="@layout/content_recipe_info">
 
     <LinearLayout

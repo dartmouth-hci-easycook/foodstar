@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fullscreen_content"
+    android:layout_width="320dp"
+    android:layout_height="480dp"
+    android:background="@drawable/nutreint_details"
+    android:fitsSystemWindows="true"
+    android:gravity="center"
+    android:keepScreenOn="true"
+    android:scaleType="fitXY"
+    android:textColor="#33b5e5"
+    android:textSize="50sp"
+    android:textStyle="bold"
+    tools:context="edu.dartmouth.cs.hci.foodstar.ui.activity.NutrientDetails">
+</ImageView>
+
+
+

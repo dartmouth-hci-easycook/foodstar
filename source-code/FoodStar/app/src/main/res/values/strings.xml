@@ -40,4 +40,8 @@
     <string name="title_activity_recipe_info">Recipe Info</string>
     <string name="title_activity_detailed_step">Detailed Step</string>
     <string name="rate_btn">RATE THE APP!</string>
+
+    <string name="title_activity_nutrient_details">NutrientDetails</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
