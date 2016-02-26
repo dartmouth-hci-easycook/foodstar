@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
     tools:showIn="@layout/content_recipe_info">
 
     <LinearLayout
@@ -25,7 +27,7 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:id="@+id/txtProtein"
-                android:background="@drawable/circle_red"
+                android:background="@drawable/circle_red" android:layout_gravity="center"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="10G"
@@ -36,6 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_gravity="center"
                 android:text="Protein"
                 android:textColor="@color/red1"
                 android:textSize="20dp" />
@@ -51,6 +54,7 @@
 
             <TextView
                 android:layout_width="70dp"
+                android:layout_gravity="center"
                 android:layout_height="70dp"
                 android:background="@drawable/circle_yellow"
                 android:gravity="center"
@@ -63,6 +67,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:gravity="center"
                 android:text="Fat"
                 android:textColor="@color/yellow1"
@@ -78,6 +83,7 @@
             <TextView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:layout_gravity="center"
                 android:background="@drawable/circle_green"
                 android:gravity="center"
                 android:padding="5dp"
@@ -89,6 +95,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:gravity="center"
                 android:text="Carb"
                 android:textColor="@color/green2"
